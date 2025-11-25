@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário - Captação de Dados Comerciais</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="file"] {
+            margin-top: 5px;
+        }
+        .required::after {
+            content: ' *';
+            color: red;
+        }
+        .radio-group {
+            margin-top: 5px;
+        }
+        .radio-group label {
+            display: inline-block;
+            margin-right: 20px;
+            font-weight: normal;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        h2 {
+            margin-top: 30px;
+            color: #444;
+        }
+    </style>
+</head>
+<body>
+    <h1>Formulário - Captação de Dados Comerciais</h1>
+    <p>Preencha as informações detalhadas do negócio e do responsável para prosseguir com a captação de dados.</p>
+    <p><em>O nome, a foto e o e-mail associados à sua Conta do Google serão registrados quando você fizer upload de arquivos e enviar este formulário.</em></p>
+    
+    <form action="SEU_WEBHOOK_URL_AQUI" method="POST" enctype="multipart/form-data">  <!-- Substitua pelo URL do webhook no n8n -->
+        
+        <label for="nome_negocio" class="required">NOME DO NEGÓCIO:</label>
+        <input type="text" id="nome_negocio" name="nome_negocio" required>
+        
+        <label for="rua_numero">RUA E NÚMERO:</label>
+        <input type="text" id="rua_numero" name="rua_numero">
+        
+        <label for="tipo_negocio">TIPO DE NEGÓCIO:</label>
+        <input type="text" id="tipo_negocio" name="tipo_negocio">
+        
+        <label for="fonte_captacao">FONTE DE CAPTAÇÃO:</label>
+        <select id="fonte_captacao" name="fonte_captacao">
+            <option value="">Selecione uma opção</option>
+            <option value="PAP (Abordados no PAP pelo Victor)">PAP (Abordados no PAP pelo Victor)</option>
+            <option value="SÓCIOS (Enviados pela rede dos sócios)">SÓCIOS (Enviados pela rede dos sócios)</option>
+            <option value="REDES SOCIAIS (Contato interessado da rede social)">REDES SOCIAIS (Contato interessado da rede social)</option>
+            <option value="PCONTROL (Contatos que responderam o email da cadência)">PCONTROL (Contatos que responderam o email da cadência)</option>
+            <option value="ORGÂNICO (Chamou em qlq canal, sócio, comercial e está interessado em conhecer mais)">ORGÂNICO (Chamou em qlq canal, sócio, comercial e está interessado em conhecer mais)</option>
+            <option value="EVENTOS DE NETWORKING (Quando estivermos em eventos como foco em captar leads)">EVENTOS DE NETWORKING (Quando estivermos em eventos como foco em captar leads)</option>
+        </select>
+        
+        <label for="nome_responsavel" class="required">NOME DO RESPONSÁVEL:</label>
+        <input type="text" id="nome_responsavel" name="nome_responsavel" required>
+        
+        <label for="telefone">TELEFONE:</label>
+        <input type="tel" id="telefone" name="telefone">
+        
+        <label for="email">EMAIL:</label>
+        <input type="email" id="email" name="email">
+        
+        <label for="cargo">CARGO:</label>
+        <input type="text" id="cargo" name="cargo">
+        
+        <label for="nivel_interesse" class="required">NÍVEL DE INTERESSE DO NEGÓCIO:</label>
+        <input type="text" id="nivel_interesse" name="nivel_interesse" required>  <!-- Assumindo texto, pois opções não foram especificadas -->
+        
+        <h2>INFORMAÇÕES DA OPERAÇÃO</h2>
+        
+        <label for="quantos_profissionais">QUANTOS PROFISSIONAIS (Nº):</label>
+        <input type="number" id="quantos_profissionais" name="quantos_profissionais" min="0">
+        
+        <label class="required">O negócio utiliza Ponto Eletrônico?</label>
+        <div class="radio-group">
+            <input type="radio" id="ponto_sim" name="ponto_eletronico" value="SIM" required>
+            <label for="ponto_sim">SIM</label>
+            <input type="radio" id="ponto_nao" name="ponto_eletronico" value="NÃO">
+            <label for="ponto_nao">NÃO</label>
+        </div>
+        
+        <label class="required">O negócio faz ADMISSÃO DIGITAL?</label>
+        <div class="radio-group">
+            <input type="radio" id="admissao_sim" name="admissao_digital" value="SIM" required>
+            <label for="admissao_sim">SIM</label>
+            <input type="radio" id="admissao_nao" name="admissao_digital" value="NÃO">
+            <label for="admissao_nao">NÃO</label>
+        </div>
+        
+        <label class="required">O negócio faz PAGAMENTO EM LOTE?</label>
+        <div class="radio-group">
+            <input type="radio" id="pagamento_sim" name="pagamento_lote" value="SIM" required>
+            <label for="pagamento_sim">SIM</label>
+            <input type="radio" id="pagamento_nao" name="pagamento_lote" value="NÃO">
+            <label for="pagamento_nao">NÃO</label>
+        </div>
+        
+        <label for="fachada_upload">FACHADA DO COMÉRCIO (UPLOAD):</label>
+        <input type="file" id="fachada_upload" name="fachada_upload" accept="image/*" />  <!-- Limite de 10MB pode ser validado no backend; aqui é client-side básico -->
+        <p>Faça upload de 1 arquivo aceito. O tamanho máximo é de 10 MB.</p>
+        
+        <label for="comentarios">COMENTÁRIOS ADICIONAIS:</label>
+        <textarea id="comentarios" name="comentarios" rows="5"></textarea>
+        
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>
